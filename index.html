@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>De Saloncoureurs — Sitey</title>
+<title>De Saloncoureurs — Site</title>
 <link rel="stylesheet" href="stijl.css">
 </head>
 <body>
@@ -40,11 +40,11 @@
       <p>Site</p>
     </div>
     <div class="header-right">
-      <div class="edition-badge">#2 — Lente 2025</div>
+      <div class="edition-badge">#1 — Lente 2025</div>
       <nav class="archive-nav">
         <span class="archive-label">Edities:</span>
-        <a href="edities/editie-1.html">#1</a>
-        <a href="index.html" class="current">#2</a>
+        <a href="index.html" class="current">#1</a>
+        <!-- <a href="edities/editie-2.html">#2</a> -->
       </nav>
     </div>
   </header>
@@ -115,7 +115,6 @@
     <!-- Volgwagen-nieuws -->
     <div class="card">
       <div class="card-title"><div class="dot dot-amber"></div> 📰 In de volgwagen</div>
-
       <div class="sanction">
         <div class="s-name">Andreas — de aanwezig-afwezig trofee</div>
         <div class="s-desc">Andreas wist deze maand een opvallend record te vestigen: hij zette zich voor minstens drie ritten op 'aanwezig', om vervolgens last-minute toch af te zeggen. Een knappe prestatie in de categorie standvastigheid!</div>
@@ -140,7 +139,7 @@
       <div class="card-title"><div class="dot dot-red"></div> 🤕 Ziekenboeg</div>
       <div class="sanction">
         <div class="s-name">Lucas</div>
-        <div class="s-desc">Voorlopig enkel "armfietsen". Trakteert Omers bij zijn eerste zondagsritje terug.</div>
+        <div class="s-desc">Voorlopig zit er voor Lucas niets anders op dan te "armfietsen". We wensen hem een razendsnel herstel en hopen hem snel weer aan de start van de zondagsrit te zien. Hij zal alvast Omers trakteren bij zijn eerst volgende zondagsritje!</div>
         <div class="s-tag">Herstellende</div>
       </div>
       <div class="sanction">
@@ -230,7 +229,7 @@
           <div class="stat-label">Kilometers</div>
           <div class="stat-val">5.548 <span class="stat-unit">/ 40.000 km</span></div>
           <div style="margin-top:6px;height:4px;background:var(--border);border-radius:2px">
-            <div style="width:13.9%;height:4px;background:#378ADD;border-radius:2px"></div>
+            <div style="width:13.9%;height:4px;background:var(--gold);border-radius:2px"></div>
           </div>
           <div style="font-size:11px;color:var(--text3);margin-top:3px">13,9%</div>
         </div>
@@ -242,7 +241,7 @@
           <div class="stat-label">Groepsritten</div>
           <div class="stat-val">3 <span class="stat-unit">/ 10</span></div>
           <div style="margin-top:6px;height:4px;background:var(--border);border-radius:2px">
-            <div style="width:30%;height:4px;background:#639922;border-radius:2px"></div>
+            <div style="width:30%;height:4px;background:var(--green-fg);border-radius:2px"></div>
           </div>
         </div>
         <div class="stat-box">
@@ -259,7 +258,7 @@
     <!-- Salon Quiz -->
     <div class="card full">
       <div class="card-title"><div class="dot dot-purple"></div> 🤔 De Salon-Quiz</div>
-      <p style="font-size:14px;font-weight:500;margin-bottom:10px">Waarom schitterde Michel door afwezigheid tijdens de vriendjesrit?</p>
+      <p style="font-size:14px;font-weight:500;margin-bottom:10px;color:var(--text)">Waarom schitterde Michel door afwezigheid tijdens de vriendjesrit?</p>
       <div id="quiz" style="display:flex;flex-direction:column;gap:6px">
         <button class="quiz-opt" onclick="antwoord(this, false)">A) De hond moest worden uitgelaten</button>
         <button class="quiz-opt" onclick="antwoord(this, false)">B) De koffiekoeken moesten opgehaald worden</button>
@@ -282,25 +281,6 @@
 
   <footer class="site-footer">De Saloncoureurs &copy; 2025 · Site</footer>
 </div>
-
-<style>
-.quiz-opt {
-  text-align:left;
-  background:var(--surface2);
-  border:0.5px solid var(--border);
-  border-radius:var(--radius-sm);
-  padding:8px 12px;
-  font-size:13px;
-  color:var(--text);
-  cursor:pointer;
-  transition:background .15s;
-  font-family:inherit;
-}
-.quiz-opt:hover { background:var(--blue-bg); color:var(--blue-fg); }
-.quiz-opt:disabled { cursor:default; }
-.quiz-opt.correct { background:var(--green-bg); color:var(--green-fg); border-color:var(--green-fg); }
-.quiz-opt.wrong { background:var(--red-bg); color:var(--red-fg); opacity:.6; }
-</style>
 
 <script>
 function toggleMenu() {
