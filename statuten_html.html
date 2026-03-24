@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>De Saloncoureurs — Statuten</title>
+<link rel="stylesheet" href="stijl.css">
+<style>
+  .statuten-header {
+    background: var(--navy3);
+    border: 0.5px solid var(--border2);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .statuten-seal {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: var(--gold-pale);
+    border: 2px solid var(--border2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+  .statuten-header-text h2 { font-size: 18px; font-weight: 600; color: var(--gold); }
+  .statuten-header-text p { font-size: 13px; color: var(--text2); margin-top: 3px; }
+  .statuten-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  .statuten-meta .pill { font-size: 11px; }
+
+  .artikel {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .artikel-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: var(--surface2);
+    border-bottom: 0.5px solid var(--border2);
+  }
+  .artikel-nummer {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--gold-pale);
+    border: 0.5px solid var(--border2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .artikel-titel { font-size: 14px; font-weight: 600; color: var(--gold); }
+  .artikel-icon { font-size: 16px; margin-left: auto; }
+  .artikel-body { padding: 16px 18px; }
+
+  .lid-regel {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 0.5px solid var(--border);
+    align-items: flex-start;
+  }
+  .lid-regel:last-child { border-bottom: none; padding-bottom: 0; }
+  .regel-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold);
+    background: var(--gold-pale);
+    border: 0.5px solid var(--border2);
+    border-radius: 4px;
+    padding: 2px 7px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .regel-tekst { font-size: 13px; color: var(--text2); line-height: 1.65; }
+  .regel-tekst strong { color: var(--text); font-weight: 500; }
+
+  .sanctie-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    margin-top: 5px;
+    font-weight: 500;
+  }
+  .sanctie-pill.rood { background: var(--red-bg); color: var(--red-fg); border: 0.5px solid rgba(224,90,90,0.25); }
+  .sanctie-pill.goud { background: var(--gold-pale); color: var(--gold); border: 0.5px solid var(--border2); }
+  .sanctie-pill.groen { background: var(--green-bg); color: var(--green-fg); border: 0.5px solid rgba(90,171,110,0.3); }
+
+  .slotbepaling {
+    background: var(--surface2);
+    border-radius: var(--radius);
+    border-left: 3px solid var(--gold);
+    padding: 14px 18px;
+    margin-top: 4px;
+  }
+  .slotbepaling p { font-size: 13px; color: var(--text2); line-height: 1.7; }
+  .slotbepaling p + p { margin-top: 8px; }
+
+  .inwerkingtreding {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: var(--gold-pale);
+    border: 0.5px solid var(--border2);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    margin-top: 10px;
+  }
+  .inwerkingtreding-label { font-size: 12px; color: var(--text2); }
+  .inwerkingtreding-datum { font-size: 15px; font-weight: 600; color: var(--gold); }
+  .handtekening-blok {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .handtekening {
+    flex: 1;
+    min-width: 140px;
+    background: var(--surface2);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    text-align: center;
+  }
+  .handtekening .functie { font-size: 10px; text-transform: uppercase; letter-spacing: .06em; color: var(--text3); margin-bottom: 6px; }
+  .handtekening .naam { font-size: 13px; font-weight: 500; color: var(--text); }
+  .handtekening .lijn {
+    height: 1px;
+    background: var(--border2);
+    margin: 10px 0 6px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">🚴 De Saloncoureurs</a>
+    <div class="nav-links">
+      <a href="index.html">Biweekly</a>
+      <a href="leden.html">Leden</a>
+      <a href="statuten.html" class="active">Statuten</a>
+      <a href="https://wtc-saloncoureurs.web.app/" target="_blank">Tracker ↗</a>
+    </div>
+    <button class="nav-burger" onclick="toggleMenu()">☰</button>
+  </div>
+  <div class="nav-mobile" id="mobileMenu">
+    <a href="index.html">Biweekly</a>
+    <a href="leden.html">Leden</a>
+    <a href="statuten.html" class="active">Statuten</a>
+    <a href="https://wtc-saloncoureurs.web.app/" target="_blank">Tracker ↗</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- Statuut header -->
+  <div class="statuten-header">
+    <div class="statuten-seal">📜</div>
+    <div class="statuten-header-text">
+      <h2>Statuten van WTC Saloncoureurs</h2>
+      <p>Officieel document — van kracht sinds 6 december 2025</p>
+      <div class="statuten-meta">
+        <div class="pill">📅 <strong>06/12/2025</strong></div>
+        <div class="pill">📋 <strong>5 artikelen</strong></div>
+        <div class="pill">🖋️ Voorzitter: <strong>Willem VB</strong></div>
+        <div class="pill">🧢 Vicepresident: <strong>Lucas S</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Artikel 1 -->
+  <div class="artikel">
+    <div class="artikel-header">
+      <div class="artikel-nummer">1</div>
+      <div class="artikel-titel">Naam en Doel</div>
+      <div class="artikel-icon">🚴</div>
+    </div>
+    <div class="artikel-body">
+      <div class="lid-regel">
+        <div class="regel-num">1.1</div>
+        <div class="regel-tekst">De vereniging draagt de naam <strong>WTC Saloncoureurs</strong>.</div>
+      </div>
+      <div class="lid-regel">
+        <div class="regel-num">1.2</div>
+        <div class="regel-tekst"><strong>Doel:</strong> het bevorderen van wielersport, het stimuleren van sportieve prestaties en het versterken van groepsgevoel.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Artikel 2 -->
+  <div class="artikel">
+    <div class="artikel-header">
+      <div class="artikel-nummer">2</div>
+      <div class="artikel-titel">Bestuur en Besluitvorming</div>
+      <div class="artikel-icon">⚖️</div>
+    </div>
+    <div class="artikel-body">
+      <div class="lid-regel">
+        <div class="regel-num">2.1</div>
+        <div class="regel-tekst">Het bestuur bestaat uit een <strong>voorzitter</strong> en <strong>vicevoorzitter</strong>.</div>
+      </div>
+      <div class="lid-regel">
+        <div class="regel-num">2.2</div>
+        <div class="regel-tekst">Beslissingen worden genomen door het bestuur.</div>
+      </div>
+      <div class="lid-regel">
+        <div class="regel-num">2.3</div>
+        <div class="regel-tekst">
+          Een beslissing kan worden herzien indien <strong>minstens 50% van de leden</strong> (inclusief bestuur) dit bevestigt via een WhatsApp-poll.
+          <br><span class="sanctie-pill goud">📊 WhatsApp-poll · ≥50% incl. bestuur</span>
+        </div>
+      </div>
+      <div class="lid-regel">
+        <div class="regel-num">2.4</div>
+        <div class="regel-tekst">
+          Het bestuur kan worden afgezet indien <strong>minstens 50% van de leden</strong> (exclusief bestuur) dit bevestigt via een WhatsApp-poll.
+          <br><span class="sanctie-pill rood">⚠️ Motie van wantrouwen · ≥50% excl. bestuur</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Artikel 3 -->
+  <div class="artikel">
+    <div class="artikel-header">
+      <div class="artikel-nummer">3</div>
+      <div class="artikel-titel">Nieuwe leden</div>
+      <div class="artikel-icon">🆕</div>
+    </div>
+    <div class="artikel-body">
+      <div class="lid-regel">
+        <div class="regel-num">3.1</div>
+        <div class="regel-tekst">
+          Nieuwe leden dienen een <strong>aanvraagformulier</strong> in en ondergaan een <strong>initiatie</strong>, zoals bepaald door het bestuur. Op basis van Strava moet blijken dat het minimumaantal kilometers per jaar haalbaar is.
+          <br><span class="sanctie-pill goud">📋 Aanvraagformulier vereist</span>
+          <span class="sanctie-pill groen">🚴 Strava-verificatie</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Artikel 4 -->
+  <div class="artikel">
+    <div class="artikel-header">
+      <div class="artikel-nummer">4</div>
+      <div class="artikel-titel">Gedragsregels en Doelstellingen</div>
+      <div class="artikel-icon">📏</div>
+    </div>
+    <div class="artikel-body">
+      <div class="lid-regel">
+        <div class="regel-num">4.1</div>
+        <div class="regel-tekst">
+          <strong>Te laat komen:</strong> wie later dan vijf minuten arriveert, betaalt <strong>€10</strong> aan het bestuur. Dit geldt ook voor afzeggen op minder dan één uur voor vertrek. Dit geld kan aangewend worden op activiteiten en na/tijdens groepsritten naargelang beslissingen bestuur.
+          <br><span class="sanctie-pill rood">💶 €10 boete · &gt;5 min te laat</span>
+          <span class="sanctie-pill rood">💶 €10 boete · afzeggen &lt;1u voor vertrek</span>
+        </div>
+      </div>
+      <div class="lid-regel">
+        <div class="regel-num">4.2</div>
+        <div class="regel-tekst">
+          <strong>Trainingsdiscipline:</strong> wie langer dan één maand niet traint, fietst met een door het bestuur gekozen strafitem. Dit geldt niet tijdens de maanden december en januari. Een rit telt pas indien deze <strong>20 km of langer</strong> is en buiten (niet op de rollen) werd uitgevoerd.
+          <br><span class="sanctie-pill rood">🔴 Strafitem na &gt;1 maand inactiviteit</span>
+          <span class="sanctie-pill goud">❄️ Uitzondering: december &amp; januari</span>
+          <span class="sanctie-pill groen">✓ Min. 20 km buiten</span>
+        </div>
+      </div>
+      <div class="lid-regel">
+        <div class="regel-num">4.3</div>
+        <div class="regel-tekst">
+          <strong>Minimumgrens:</strong> op de eindejaarvergadering (ESV) wordt een minimumgrens voor kilometers vastgesteld. Niet halen betekent uitsluiting. Voor seizoen 2026 ligt deze op <strong>1.000 km</strong>.
+          <br><span class="sanctie-pill rood">⛔ Niet halen = uitsluiting</span>
+          <span class="sanctie-pill goud">🎯 Seizoen 2026: 1.000 km</span>
+        </div>
+      </div>
+      <div class="lid-regel">
+        <div class="regel-num">4.4</div>
+        <div class="regel-tekst">
+          Jaarlijkse doelstellingen worden op de <strong>ESV</strong> vastgelegd. Het behalen ervan wordt beloond door het bestuur op de ESV.
+          <br><span class="sanctie-pill groen">🏆 Behalen = beloning op ESV</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Artikel 5 -->
+  <div class="artikel">
+    <div class="artikel-header">
+      <div class="artikel-nummer">5</div>
+      <div class="artikel-titel">Slotbepalingen</div>
+      <div class="artikel-icon">🔏</div>
+    </div>
+    <div class="artikel-body">
+      <div class="slotbepaling">
+        <p>Deze statuten treden in werking op <strong style="color:var(--gold)">06/12/2025</strong> en blijven geldig tot wijziging door het bestuur.</p>
+        <p>In alle gevallen waarin deze statuten geen uitsluitsel geven, gelden <strong style="color:var(--gold)">traditie en gezond verstand</strong>, met finale beslissingsbevoegdheid voor voorzitter en vicevoorzitter.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inwerkingtreding & handtekeningen -->
+  <div class="inwerkingtreding">
+    <div>
+      <div class="inwerkingtreding-label">Van kracht sinds</div>
+      <div class="inwerkingtreding-datum">6 december 2025</div>
+    </div>
+    <div>
+      <div class="inwerkingtreding-label">Geldig tot</div>
+      <div class="inwerkingtreding-datum">Wijziging door bestuur</div>
+    </div>
+    <div>
+      <div class="inwerkingtreding-label">Versie</div>
+      <div class="inwerkingtreding-datum">v1.0</div>
+    </div>
+  </div>
+
+  <div class="handtekening-blok">
+    <div class="handtekening">
+      <div class="functie">Voorzitter</div>
+      <div class="lijn"></div>
+      <div class="naam">Willem Vanden Bussche</div>
+    </div>
+    <div class="handtekening">
+      <div class="functie">Vicepresident</div>
+      <div class="lijn"></div>
+      <div class="naam">Lucas Saenen</div>
+    </div>
+  </div>
+
+  <footer class="site-footer">De Saloncoureurs &copy; 2025</footer>
+</div>
+
+<script>
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+</script>
+</body>
+</html>
