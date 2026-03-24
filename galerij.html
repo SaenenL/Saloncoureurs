@@ -5,27 +5,154 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>De Saloncoureurs — Galerij</title>
 <link rel="stylesheet" href="stijl.css">
+<style>
+  .album { margin-bottom: 12px; }
+  .album-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 18px;
+    background: var(--surface2);
+    border: 0.5px solid var(--border2);
+    border-radius: var(--radius);
+    margin-bottom: 8px;
+  }
+  .album-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    background: var(--gold-pale);
+    border: 0.5px solid var(--border2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .album-info { flex: 1; }
+  .album-titel { font-size: 14px; font-weight: 600; color: var(--gold); }
+  .album-sub { font-size: 12px; color: var(--text2); margin-top: 2px; }
+  .album-count {
+    font-size: 11px; font-weight: 600;
+    background: var(--gold-pale);
+    color: var(--gold);
+    border: 0.5px solid var(--border2);
+    border-radius: 20px;
+    padding: 3px 10px;
+  }
+
+  .foto-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  @media (max-width: 480px) { .foto-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .foto-item {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    aspect-ratio: 1;
+    cursor: pointer;
+    position: relative;
+    background: var(--surface2);
+    border: 0.5px solid var(--border);
+  }
+  .foto-item img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform .25s;
+  }
+  .foto-item:hover img { transform: scale(1.05); }
+  .foto-overlay {
+    position: absolute; inset: 0;
+    background: rgba(10,22,40,0.45);
+    opacity: 0;
+    transition: opacity .2s;
+    display: flex; align-items: flex-end;
+    padding: 8px;
+  }
+  .foto-item:hover .foto-overlay { opacity: 1; }
+  .foto-label {
+    font-size: 11px; color: #f0ead8;
+    background: rgba(0,0,0,0.5);
+    border-radius: 4px;
+    padding: 2px 7px;
+    line-height: 1.4;
+  }
+  .foto-winnaar {
+    position: absolute; top: 6px; right: 6px;
+    font-size: 20px;
+  }
+  .foto-winnaar-badge {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: rgba(212,169,42,0.85);
+    color: #0a1628;
+    font-size: 11px; font-weight: 700;
+    text-align: center;
+    padding: 4px 6px;
+    letter-spacing: .03em;
+  }
+
+  /* Lightbox */
+  .lightbox {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 78vh;
+    border-radius: var(--radius);
+    object-fit: contain;
+  }
+  .lightbox-caption {
+    font-size: 13px;
+    color: #f0ead8;
+    text-align: center;
+    max-width: 500px;
+  }
+  .lightbox-close {
+    position: absolute; top: 16px; right: 20px;
+    font-size: 28px; color: var(--gold);
+    cursor: pointer; background: none; border: none; line-height: 1;
+  }
+  .lightbox-nav {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    font-size: 28px; color: var(--gold);
+    cursor: pointer; background: none; border: none;
+    padding: 8px;
+    opacity: .7;
+  }
+  .lightbox-nav:hover { opacity: 1; }
+  .lightbox-prev { left: 16px; }
+  .lightbox-next { right: 16px; }
+</style>
 </head>
 <body>
 
 <nav class="topnav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">🚴 De Saloncoureurs</a>
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" style="width:28px;height:28px;object-fit:contain;">
+      De Saloncoureurs
+    </a>
     <div class="nav-links">
-    <a href="index.html">Biweekly</a>
-    <a href="leden.html">Leden</a>
-    <a href="statuten.html">Statuten</a>
-    <a href="galerij.html" class="active">Galerij</a>
-    <a href="https://wtc-saloncoureurs.web.app/" target="_blank">Tracker ↗</a>
+      <a href="index.html">Site</a>
+      <a href="galerij.html" class="active">Galerij</a>
+      <a href="leden.html">Leden</a>
+      <a href="statuten.html">Statuten</a>
+      <a href="https://wtc-saloncoureurs.web.app/" target="_blank">Tracker ↗</a>
     </div>
     <button class="nav-burger" onclick="toggleMenu()">☰</button>
   </div>
   <div class="nav-mobile" id="mobileMenu">
-  <a href="index.html">Biweekly</a>
-     <a href="index.html">Biweekly</a>
+    <a href="index.html">Site</a>
+    <a href="galerij.html" class="active">Galerij</a>
     <a href="leden.html">Leden</a>
     <a href="statuten.html">Statuten</a>
-    <a href="galerij.html" class="active">Galerij</a>
     <a href="https://wtc-saloncoureurs.web.app/" target="_blank">Tracker ↗</a>
   </div>
 </nav>
@@ -33,89 +160,188 @@
 <div class="page">
 
   <div class="page-title">
-    <h2>Fotogalerij</h2>
+    <h2>Galerij</h2>
     <p>Herinneringen van onze ritten en events</p>
   </div>
 
-  <!-- HOE FOTO'S TOEVOEGEN:
-       Optie 1 (aanbevolen): Upload foto's naar een Google Photos album, deel het album,
-                              en gebruik de gedeelde afbeeldings-URL als src.
-       Optie 2: Gooi foto's in een /fotos/ map in je GitHub repository
-                en gebruik src="fotos/jouwfoto.jpg"
-       Vervang de placeholder-blokken hieronder door echte <img> tags. -->
-
-  <!-- Album: Weekend aan Zee -->
-  <div class="card full" style="margin-bottom:10px">
-    <div class="card-title"><div class="dot dot-purple"></div> Weekend aan Zee — aug 2025</div>
+  <!-- ═══════════════════════════════════════════
+       ALBUM 1 — Triathlon Kortrijk
+       Vervang triathlon-1.jpg t/m triathlon-6.jpg
+       door de echte bestandsnamen in fotos/
+  ════════════════════════════════════════════ -->
+  <div class="album">
+    <div class="album-header">
+      <div class="album-icon">🏊</div>
+      <div class="album-info">
+        <div class="album-titel">Triathlon Kortrijk</div>
+        <div class="album-sub">Juni 2025</div>
+      </div>
+      <div class="album-count">6 foto's</div>
+    </div>
     <div class="foto-grid">
 
-      <!-- Vervang de placeholder divs door:
-           <div class="foto-item" onclick="openLight(this)">
-             <img src="https://jouw-foto-url.jpg" alt="Beschrijving">
-             <div class="foto-caption">Beschrijving</div>
-           </div>
+      <div class="foto-item" onclick="openLight(0, 'triathlon')">
+        <img src="fotos/triathlon-1.jpg" alt="Triathlon Kortrijk">
+        <div class="foto-overlay"><div class="foto-label">Triathlon Kortrijk</div></div>
+      </div>
+
+      <div class="foto-item" onclick="openLight(1, 'triathlon')">
+        <img src="fotos/triathlon-2.jpg" alt="Triathlon Kortrijk">
+        <div class="foto-overlay"><div class="foto-label">Triathlon Kortrijk</div></div>
+      </div>
+
+      <div class="foto-item" onclick="openLight(2, 'triathlon')">
+        <img src="fotos/triathlon-3.jpg" alt="Triathlon Kortrijk">
+        <div class="foto-overlay"><div class="foto-label">Triathlon Kortrijk</div></div>
+      </div>
+
+      <div class="foto-item" onclick="openLight(3, 'triathlon')">
+        <img src="fotos/triathlon-4.jpg" alt="Triathlon Kortrijk">
+        <div class="foto-overlay"><div class="foto-label">Triathlon Kortrijk</div></div>
+      </div>
+
+      <!-- Winnaarsroto — kroon + badge onderaan -->
+      <!-- ⬇ Vervang triathlon-5.jpg door de winnaarsfoto -->
+      <div class="foto-item" onclick="openLight(4, 'triathlon')">
+        <img src="fotos/triathlon-5.jpg" alt="Winnaar Triathlon">
+        <div class="foto-winnaar">👑</div>
+        <div class="foto-winnaar-badge">👑 Winnaar — [Naam]</div>
+        <div class="foto-overlay"><div class="foto-label">Winnaar</div></div>
+      </div>
+
+      <div class="foto-item" onclick="openLight(5, 'triathlon')">
+        <img src="fotos/triathlon-6.jpg" alt="Triathlon Kortrijk">
+        <div class="foto-overlay"><div class="foto-label">Triathlon Kortrijk</div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       ALBUM 2 — De vele ritjes
+       Vervang ritjes-1.jpg door de echte naam
+  ════════════════════════════════════════════ -->
+  <div class="album">
+    <div class="album-header">
+      <div class="album-icon">🚴</div>
+      <div class="album-info">
+        <div class="album-titel">De vele ritjes doorheen het jaar</div>
+        <div class="album-sub">2025</div>
+      </div>
+      <div class="album-count">1 foto</div>
+    </div>
+    <div class="foto-grid">
+
+      <div class="foto-item" onclick="openLight(0, 'ritjes')">
+        <img src="fotos/ritjes-1.jpg" alt="Ritjes 2025">
+        <div class="foto-overlay"><div class="foto-label">Groepsrit 2025</div></div>
+      </div>
+
+      <!-- Voeg extra ritjes-foto's toe door dit blok te kopiëren:
+      <div class="foto-item" onclick="openLight(X, 'ritjes')">
+        <img src="fotos/ritjes-X.jpg" alt="Ritje">
+        <div class="foto-overlay"><div class="foto-label">Omschrijving</div></div>
+      </div>
       -->
 
-      <div class="foto-item">
-        <div class="foto-placeholder">📷</div>
-        <div class="foto-caption">Foto 1</div>
-      </div>
-      <div class="foto-item">
-        <div class="foto-placeholder">📷</div>
-        <div class="foto-caption">Foto 2</div>
-      </div>
-      <div class="foto-item">
-        <div class="foto-placeholder">📷</div>
-        <div class="foto-caption">Foto 3</div>
-      </div>
-      <div class="foto-item">
-        <div class="foto-placeholder">📷</div>
-        <div class="foto-caption">Foto 4</div>
-      </div>
-      <div class="foto-item">
-        <div class="foto-placeholder">📷</div>
-        <div class="foto-caption">Foto 5</div>
-      </div>
-      <div class="foto-item">
-        <div class="foto-placeholder">📷</div>
-        <div class="foto-caption">Foto 6</div>
-      </div>
-
     </div>
   </div>
 
-  <!-- Album: Groepsrit Vlaamse Ardennen -->
-  <div class="card full">
-    <div class="card-title"><div class="dot dot-green"></div> Groepsrit Vlaamse Ardennen — aug 2025</div>
+  <!-- ═══════════════════════════════════════════
+       ALBUM 3 — Vaderdagrit
+       Vervang vaderdag-1.jpg door de echte naam
+  ════════════════════════════════════════════ -->
+  <div class="album">
+    <div class="album-header">
+      <div class="album-icon">👨</div>
+      <div class="album-info">
+        <div class="album-titel">Vaderdagrit</div>
+        <div class="album-sub">2025</div>
+      </div>
+      <div class="album-count">1 foto</div>
+    </div>
     <div class="foto-grid">
-      <div class="foto-item"><div class="foto-placeholder">📷</div></div>
-      <div class="foto-item"><div class="foto-placeholder">📷</div></div>
-      <div class="foto-item"><div class="foto-placeholder">📷</div></div>
+
+      <div class="foto-item" onclick="openLight(0, 'vaderdag')">
+        <img src="fotos/vaderdag-1.jpg" alt="Vaderdagrit 2025">
+        <div class="foto-overlay"><div class="foto-label">Vaderdagrit 2025</div></div>
+      </div>
+
+      <!-- Voeg extra vaderdag-foto's toe door dit blok te kopiëren:
+      <div class="foto-item" onclick="openLight(X, 'vaderdag')">
+        <img src="fotos/vaderdag-X.jpg" alt="Vaderdag">
+        <div class="foto-overlay"><div class="foto-label">Omschrijving</div></div>
+      </div>
+      -->
+
     </div>
   </div>
 
-</div>
+</div><!-- /page -->
 
 <!-- Lightbox -->
-<div class="lightbox" id="lightbox" onclick="closeLight()">
+<div class="lightbox" id="lightbox" onclick="closeLight(event)">
   <button class="lightbox-close" onclick="closeLight()">✕</button>
+  <button class="lightbox-nav lightbox-prev" onclick="navLight(-1, event)">‹</button>
   <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+  <button class="lightbox-nav lightbox-next" onclick="navLight(1, event)">›</button>
 </div>
+
+<footer class="site-footer" style="max-width:780px;margin:0 auto;padding:0 16px 32px">
+  De Saloncoureurs &copy; 2025
+</footer>
 
 <script>
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
 }
-function openLight(el) {
-  const img = el.querySelector('img');
-  if (!img) return;
-  document.getElementById('lightbox-img').src = img.src;
+
+const albums = {
+  triathlon: [
+    { src: 'fotos/triathlon-1.jpg', cap: 'Triathlon Kortrijk' },
+    { src: 'fotos/triathlon-2.jpg', cap: 'Triathlon Kortrijk' },
+    { src: 'fotos/triathlon-3.jpg', cap: 'Triathlon Kortrijk' },
+    { src: 'fotos/triathlon-4.jpg', cap: 'Triathlon Kortrijk' },
+    { src: 'fotos/triathlon-5.jpg', cap: '👑 Winnaar — [Naam]' },
+    { src: 'fotos/triathlon-6.jpg', cap: 'Triathlon Kortrijk' },
+  ],
+  ritjes: [
+    { src: 'fotos/ritjes-1.jpg', cap: 'Groepsrit 2025' },
+  ],
+  vaderdag: [
+    { src: 'fotos/vaderdag-1.jpg', cap: 'Vaderdagrit 2025' },
+  ],
+};
+
+let curAlbum = '', curIdx = 0;
+
+function openLight(idx, album) {
+  curAlbum = album; curIdx = idx;
+  const item = albums[album][idx];
+  document.getElementById('lightbox-img').src = item.src;
+  document.getElementById('lightbox-caption').textContent = item.cap;
   document.getElementById('lightbox').classList.add('open');
 }
-function closeLight() {
+
+function closeLight(e) {
+  if (e && e.target !== document.getElementById('lightbox') && !e.target.classList.contains('lightbox-close')) return;
   document.getElementById('lightbox').classList.remove('open');
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLight(); });
+
+function navLight(dir, e) {
+  e.stopPropagation();
+  const arr = albums[curAlbum];
+  curIdx = (curIdx + dir + arr.length) % arr.length;
+  document.getElementById('lightbox-img').src = arr[curIdx].src;
+  document.getElementById('lightbox-caption').textContent = arr[curIdx].cap;
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
+  if (e.key === 'ArrowRight') navLight(1, { stopPropagation: () => {} });
+  if (e.key === 'ArrowLeft')  navLight(-1, { stopPropagation: () => {} });
+});
 </script>
 </body>
 </html>
