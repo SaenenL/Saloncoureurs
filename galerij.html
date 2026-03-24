@@ -184,31 +184,25 @@
         <img src="fotos/triathlon-1.jpg" alt="Triathlon Kortrijk">
         <div class="foto-overlay"><div class="foto-label">Triathlon Kortrijk</div></div>
       </div>
-
       <div class="foto-item" onclick="openLight(1, 'triathlon')">
         <img src="fotos/triathlon-2.jpg" alt="Triathlon Kortrijk">
         <div class="foto-overlay"><div class="foto-label">Triathlon Kortrijk</div></div>
       </div>
-
       <div class="foto-item" onclick="openLight(2, 'triathlon')">
         <img src="fotos/triathlon-3.jpg" alt="Triathlon Kortrijk">
         <div class="foto-overlay"><div class="foto-label">Triathlon Kortrijk</div></div>
       </div>
-
+      <!-- Winnaarsfoto triathlon-4 -->
       <div class="foto-item" onclick="openLight(3, 'triathlon')">
-        <img src="fotos/triathlon-4.jpg" alt="Triathlon Kortrijk">
-        <div class="foto-overlay"><div class="foto-label">Triathlon Kortrijk</div></div>
-      </div>
-
-      <!-- Winnaarsroto — kroon + badge onderaan -->
-      <!-- ⬇ Vervang triathlon-5.jpg door de winnaarsfoto -->
-      <div class="foto-item" onclick="openLight(4, 'triathlon')">
-        <img src="fotos/triathlon-5.jpg" alt="Winnaar Triathlon">
+        <img src="fotos/triathlon-4.jpg" alt="Winnaar Triathlon">
         <div class="foto-winnaar">👑</div>
-        <div class="foto-winnaar-badge">👑 Winnaar — [Naam]</div>
+        <div class="foto-winnaar-badge">👑 Winnaar — Triathlon Kortrijk</div>
         <div class="foto-overlay"><div class="foto-label">Winnaar</div></div>
       </div>
-
+      <div class="foto-item" onclick="openLight(4, 'triathlon')">
+        <img src="fotos/triathlon-5.jpg" alt="Triathlon Kortrijk">
+        <div class="foto-overlay"><div class="foto-label">Triathlon Kortrijk</div></div>
+      </div>
       <div class="foto-item" onclick="openLight(5, 'triathlon')">
         <img src="fotos/triathlon-6.jpg" alt="Triathlon Kortrijk">
         <div class="foto-overlay"><div class="foto-label">Triathlon Kortrijk</div></div>
@@ -217,10 +211,6 @@
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════
-       ALBUM 2 — De vele ritjes
-       Vervang ritjes-1.jpg door de echte naam
-  ════════════════════════════════════════════ -->
   <div class="album">
     <div class="album-header">
       <div class="album-icon">🚴</div>
@@ -228,29 +218,32 @@
         <div class="album-titel">De vele ritjes doorheen het jaar</div>
         <div class="album-sub">2025</div>
       </div>
-      <div class="album-count">1 foto</div>
+      <div class="album-count">5 foto's</div>
     </div>
     <div class="foto-grid">
-
-      <div class="foto-item" onclick="openLight(0, 'ritjes')">
-        <img src="fotos/ritjes-1.jpg" alt="Ritjes 2025">
-        <div class="foto-overlay"><div class="foto-label">Groepsrit 2025</div></div>
+      <div class="foto-item" onclick="openLight(0, 'tandem')">
+        <img src="fotos/tandem-1.jpg" alt="Ritjes 2025">
+        <div class="foto-overlay"><div class="foto-label">De vele ritjes 2025</div></div>
       </div>
-
-      <!-- Voeg extra ritjes-foto's toe door dit blok te kopiëren:
-      <div class="foto-item" onclick="openLight(X, 'ritjes')">
-        <img src="fotos/ritjes-X.jpg" alt="Ritje">
-        <div class="foto-overlay"><div class="foto-label">Omschrijving</div></div>
+      <div class="foto-item" onclick="openLight(1, 'tandem')">
+        <img src="fotos/tandem-2.jpg" alt="Ritjes 2025">
+        <div class="foto-overlay"><div class="foto-label">De vele ritjes 2025</div></div>
       </div>
-      -->
-
+      <div class="foto-item" onclick="openLight(2, 'tandem')">
+        <img src="fotos/tandem-3.jpg" alt="Ritjes 2025">
+        <div class="foto-overlay"><div class="foto-label">De vele ritjes 2025</div></div>
+      </div>
+      <div class="foto-item" onclick="openLight(3, 'tandem')">
+        <img src="fotos/tandem-4.jpg" alt="Ritjes 2025">
+        <div class="foto-overlay"><div class="foto-label">De vele ritjes 2025</div></div>
+      </div>
+      <div class="foto-item" onclick="openLight(4, 'tandem')">
+        <img src="fotos/tandem-5.jpg" alt="Ritjes 2025">
+        <div class="foto-overlay"><div class="foto-label">De vele ritjes 2025</div></div>
+      </div>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════
-       ALBUM 3 — Vaderdagrit
-       Vervang vaderdag-1.jpg door de echte naam
-  ════════════════════════════════════════════ -->
   <div class="album">
     <div class="album-header">
       <div class="album-icon">👨</div>
@@ -261,19 +254,10 @@
       <div class="album-count">1 foto</div>
     </div>
     <div class="foto-grid">
-
       <div class="foto-item" onclick="openLight(0, 'vaderdag')">
-        <img src="fotos/vaderdag-1.jpg" alt="Vaderdagrit 2025">
+        <img src="fotos/vaderdagrit-1.jpg" alt="Vaderdagrit 2025">
         <div class="foto-overlay"><div class="foto-label">Vaderdagrit 2025</div></div>
       </div>
-
-      <!-- Voeg extra vaderdag-foto's toe door dit blok te kopiëren:
-      <div class="foto-item" onclick="openLight(X, 'vaderdag')">
-        <img src="fotos/vaderdag-X.jpg" alt="Vaderdag">
-        <div class="foto-overlay"><div class="foto-label">Omschrijving</div></div>
-      </div>
-      -->
-
     </div>
   </div>
 
@@ -302,15 +286,19 @@ const albums = {
     { src: 'fotos/triathlon-1.jpg', cap: 'Triathlon Kortrijk' },
     { src: 'fotos/triathlon-2.jpg', cap: 'Triathlon Kortrijk' },
     { src: 'fotos/triathlon-3.jpg', cap: 'Triathlon Kortrijk' },
-    { src: 'fotos/triathlon-4.jpg', cap: 'Triathlon Kortrijk' },
-    { src: 'fotos/triathlon-5.jpg', cap: '👑 Winnaar — [Naam]' },
+    { src: 'fotos/triathlon-4.jpg', cap: '👑 Winnaar — Triathlon Kortrijk' },
+    { src: 'fotos/triathlon-5.jpg', cap: 'Triathlon Kortrijk' },
     { src: 'fotos/triathlon-6.jpg', cap: 'Triathlon Kortrijk' },
   ],
-  ritjes: [
-    { src: 'fotos/ritjes-1.jpg', cap: 'Groepsrit 2025' },
+  tandem: [
+    { src: 'fotos/tandem-1.jpg', cap: 'De vele ritjes 2025' },
+    { src: 'fotos/tandem-2.jpg', cap: 'De vele ritjes 2025' },
+    { src: 'fotos/tandem-3.jpg', cap: 'De vele ritjes 2025' },
+    { src: 'fotos/tandem-4.jpg', cap: 'De vele ritjes 2025' },
+    { src: 'fotos/tandem-5.jpg', cap: 'De vele ritjes 2025' },
   ],
   vaderdag: [
-    { src: 'fotos/vaderdag-1.jpg', cap: 'Vaderdagrit 2025' },
+    { src: 'fotos/vaderdagrit-1.jpg', cap: 'Vaderdagrit 2025' },
   ],
 };
 
