@@ -255,15 +255,57 @@
     <div class="card full">
       <div class="card-title"><div class="dot dot-purple"></div> 🤔 De Salon-Quiz</div>
       <p style="font-size:14px;font-weight:500;margin-bottom:10px;color:var(--text)">Waarom schitterde Michel door afwezigheid tijdens de vriendjesrit?</p>
-      <div id="quiz" style="display:flex;flex-direction:column;gap:6px">
-        <button class="quiz-opt" onclick="antwoord(this, false)">A) De hond moest worden uitgelaten</button>
-        <button class="quiz-opt" onclick="antwoord(this, false)">B) De koffiekoeken moesten opgehaald worden</button>
-        <button class="quiz-opt" onclick="antwoord(this, false)">C) De thesis schreef zichzelf helaas niet</button>
-        <button class="quiz-opt" onclick="antwoord(this, false)">D) Hij vond simpelweg geen vriendje</button>
-        <button class="quiz-opt" onclick="antwoord(this, true)">E) Alle bovenstaande excuses (en waarschijnlijk nog meer)</button>
+      
+      <div id="quiz" style="display:flex;flex-direction:column;gap:8px">
+        <button class="quiz-opt" onclick="controleerAntwoord(this, false)">A) De hond moest worden uitgelaten</button>
+        <button class="quiz-opt" onclick="controleerAntwoord(this, false)">B) De koffiekoeken moesten opgehaald worden</button>
+        <button class="quiz-opt" onclick="controleerAntwoord(this, false)">C) De thesis schreef zichzelf helaas niet</button>
+        <button class="quiz-opt" onclick="controleerAntwoord(this, false)">D) Hij vond simpelweg geen vriendje</button>
+        <button class="quiz-opt" data-correct="true" onclick="controleerAntwoord(this, true)">E) Alle bovenstaande excuses (en waarschijnlijk nog meer)</button>
       </div>
-      <div id="quiz-result" style="display:none;margin-top:10px;padding:8px 12px;border-radius:var(--radius-sm);font-size:13px"></div>
+
+      <div id="quiz-result" style="display:none;margin-top:15px;padding:12px;border-radius:var(--radius-sm);font-size:14px; line-height: 1.4;"></div>
     </div>
+
+    <script>
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+function controleerAntwoord(gekozenKnop, isCorrect) {
+  const alleKnoppen = document.querySelectorAll('.quiz-opt');
+  const resultaatDiv = document.getElementById('quiz-result');
+  
+  // 1. Schakel alle knoppen uit zodat je niet twee keer kunt klikken
+  alleKnoppen.forEach(knop => {
+    knop.disabled = true;
+    
+    // 2. Markeer het juiste antwoord (E) altijd als groen
+    if (knop.getAttribute('data-correct') === 'true') {
+      knop.classList.add('correct');
+    }
+  });
+
+  // 3. Als het gekozen antwoord fout was, maak die specifiek rood
+  if (!isCorrect) {
+    gekozenKnop.classList.add('wrong');
+  }
+
+  // 4. Toon de feedback tekst
+  resultaatDiv.style.display = 'block';
+  if (isCorrect) {
+    resultaatDiv.style.background = '#d4edda';
+    resultaatDiv.style.color = '#155724';
+    resultaatDiv.style.border = '1px solid #28a745';
+    resultaatDiv.innerHTML = '<strong>✓ Juist!</strong> Michel is inderdaad een man van vele excuses. Waarschijnlijk speelden ze allemaal tegelijkertijd een rol.';
+  } else {
+    resultaatDiv.style.background = '#f8d7da';
+    resultaatDiv.style.color = '#721c24';
+    resultaatDiv.style.border = '1px solid #dc3545';
+    resultaatDiv.innerHTML = '<strong>✗ Fout...</strong> Hoewel dit een geldig excuus lijkt, is het juiste antwoord <strong>E</strong>. Bij Michel is het namelijk nooit één reden!';
+  }
+}
+</script>
 
     <div class="full">
       <div class="quote">
