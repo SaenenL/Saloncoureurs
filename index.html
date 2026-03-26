@@ -16,7 +16,7 @@
     </a>
     <div class="nav-links">
       <a href="index.html" class="active">Homepage</a>
-      <a href="leden.html">Leden</a>
+      <a href="kalender.html">Kalender</a> <a href="leden.html">Leden</a>
       <a href="statuten.html">Statuten</a>
       <a href="galerij.html">Galerij</a>
       <a href="https://www.instagram.com/wtcsaloncoureurs/" target="_blank">Sociale Media ↗</a>
@@ -26,7 +26,7 @@
   </div>
   <div class="nav-mobile" id="mobileMenu">
       <a href="index.html" class="active">Homepage</a>
-      <a href="leden.html">Leden</a>
+      <a href="kalender.html">Kalender</a> <a href="leden.html">Leden</a>
       <a href="statuten.html">Statuten</a>
       <a href="galerij.html">Galerij</a>
       <a href="https://www.instagram.com/wtcsaloncoureurs/" target="_blank">Sociale Media ↗</a>
@@ -49,7 +49,6 @@
       <nav class="archive-nav">
         <span class="archive-label">Edities:</span>
         <a href="index.html" class="current">#1</a>
-        <!-- <a href="edities/editie-2.html">#2</a> -->
       </nav>
     </div>
   </header>
@@ -193,6 +192,7 @@
           <div class="ev-sub">Traditionele zomerse rit</div>
         </div>
       </div>
+      <a href="kalender.html" style="display:block;margin-top:15px;text-align:center;font-size:13px;color:var(--blue-fg);text-decoration:none;font-weight:600;">Bekijk de volledige kalender →</a>
     </div>
 
     <div class="card full">
@@ -267,46 +267,6 @@
       <div id="quiz-result" style="display:none;margin-top:15px;padding:12px;border-radius:var(--radius-sm);font-size:14px; line-height: 1.4;"></div>
     </div>
 
-    <script>
-function toggleMenu() {
-  document.getElementById('mobileMenu').classList.toggle('open');
-}
-
-function controleerAntwoord(gekozenKnop, isCorrect) {
-  const alleKnoppen = document.querySelectorAll('.quiz-opt');
-  const resultaatDiv = document.getElementById('quiz-result');
-  
-  // 1. Schakel alle knoppen uit zodat je niet twee keer kunt klikken
-  alleKnoppen.forEach(knop => {
-    knop.disabled = true;
-    
-    // 2. Markeer het juiste antwoord (E) altijd als groen
-    if (knop.getAttribute('data-correct') === 'true') {
-      knop.classList.add('correct');
-    }
-  });
-
-  // 3. Als het gekozen antwoord fout was, maak die specifiek rood
-  if (!isCorrect) {
-    gekozenKnop.classList.add('wrong');
-  }
-
-  // 4. Toon de feedback tekst
-  resultaatDiv.style.display = 'block';
-  if (isCorrect) {
-    resultaatDiv.style.background = '#d4edda';
-    resultaatDiv.style.color = '#155724';
-    resultaatDiv.style.border = '1px solid #28a745';
-    resultaatDiv.innerHTML = '<strong>✓ Juist!</strong> Michel is inderdaad een man van vele excuses. Waarschijnlijk speelden ze allemaal tegelijkertijd een rol.';
-  } else {
-    resultaatDiv.style.background = '#f8d7da';
-    resultaatDiv.style.color = '#721c24';
-    resultaatDiv.style.border = '1px solid #dc3545';
-    resultaatDiv.innerHTML = '<strong>✗ Fout...</strong> Hoewel dit een geldig excuus lijkt, is het juiste antwoord <strong>E</strong>. Bij Michel is het namelijk nooit één reden!';
-  }
-}
-</script>
-
     <div class="full">
       <div class="quote">
         <p>"As as as, dat is verbrand hout."</p>
@@ -323,17 +283,34 @@ function controleerAntwoord(gekozenKnop, isCorrect) {
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
 }
-function antwoord(btn, correct) {
-  document.querySelectorAll('.quiz-opt').forEach(b => {
-    b.disabled = true;
-    b.classList.add(b === btn ? (correct ? 'correct' : 'wrong') : '');
-    if (b.textContent.startsWith('E)')) b.classList.add('correct');
+
+function controleerAntwoord(gekozenKnop, isCorrect) {
+  const alleKnoppen = document.querySelectorAll('.quiz-opt');
+  const resultaatDiv = document.getElementById('quiz-result');
+  
+  alleKnoppen.forEach(knop => {
+    knop.disabled = true;
+    if (knop.getAttribute('data-correct') === 'true') {
+      knop.classList.add('correct');
+    }
   });
-  const result = document.getElementById('quiz-result');
-  result.style.display = 'block';
-  result.style.background = correct ? 'var(--green-bg)' : 'var(--red-bg)';
-  result.style.color = correct ? 'var(--green-fg)' : 'var(--red-fg)';
-  result.textContent = correct ? '✓ Juist! Alle excuses zijn van toepassing, en waarschijnlijk nog meer.' : '✗ Bijna… Het correcte antwoord is E — alle bovenstaande excuses.';
+
+  if (!isCorrect) {
+    gekozenKnop.classList.add('wrong');
+  }
+
+  resultaatDiv.style.display = 'block';
+  if (isCorrect) {
+    resultaatDiv.style.background = '#d4edda';
+    resultaatDiv.style.color = '#155724';
+    resultaatDiv.style.border = '1px solid #28a745';
+    resultaatDiv.innerHTML = '<strong>✓ Juist!</strong> Michel is inderdaad een man van vele excuses. Waarschijnlijk speelden ze allemaal tegelijkertijd een rol.';
+  } else {
+    resultaatDiv.style.background = '#f8d7da';
+    resultaatDiv.style.color = '#721c24';
+    resultaatDiv.style.border = '1px solid #dc3545';
+    resultaatDiv.innerHTML = '<strong>✗ Fout...</strong> Hoewel dit een geldig excuus lijkt, is het juiste antwoord <strong>E</strong>. Bij Michel is het namelijk nooit één reden!';
+  }
 }
 </script>
 </body>
