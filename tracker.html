@@ -272,6 +272,26 @@ const DOELEN_CONFIG = [
   { icon:'🔄', tekst:'5 km rond een rondpunt', type:'count', doel:5, huidig:0 },
 ];
 
+// Goud kleur op basis van percentage: 0% = lichtgoud, 100% = donkergoud
+function goudKleur(pct) {
+  // Interpoleer tussen #fdf3d0 (licht) en #6b4a08 (donker)
+  const stops = [
+    [253, 243, 208], // #fdf3d0 — lichtgoud
+    [240, 200,  74], // #f0c84a
+    [212, 169,  42], // #d4a92a
+    [160, 112,  16], // #a07010
+    [107,  74,   8], // #6b4a08 — donkergoud
+  ];
+  const idx = pct * (stops.length - 1);
+  const lo = stops[Math.floor(idx)];
+  const hi = stops[Math.min(Math.ceil(idx), stops.length - 1)];
+  const t = idx - Math.floor(idx);
+  const r = Math.round(lo[0] + (hi[0]-lo[0]) * t);
+  const g = Math.round(lo[1] + (hi[1]-lo[1]) * t);
+  const b = Math.round(lo[2] + (hi[2]-lo[2]) * t);
+  return `rgb(${r},${g},${b})`;
+}
+
 async function laadData() {
   if (!DATA_URL) { toonDemo(); return; }
   try {
@@ -348,6 +368,7 @@ function toonData(data, isDemo=false) {
     const medals = ['🥇','🥈','🥉'];
     document.getElementById('leaderList').innerHTML = sorted.map((lid, i) => {
       const breedte = ((lid.km / maxKm)*100).toFixed(1);
+      const kleur = goudKleur(lid.km / maxKm);
       const isLaatste = lid.km === 0;
       return `
         <div class="leader-row">
@@ -360,7 +381,7 @@ function toonData(data, isDemo=false) {
             <div class="leader-sub">Laatste rit: ${lid.laaste || '—'}</div>
             <div class="leader-bar-wrap" style="margin-top:4px">
               <div class="leader-track">
-                <div class="leader-fill" style="width:${breedte}%"></div>
+                <div class="leader-fill" style="width:${breedte}%;background:${kleur}"></div>
               </div>
             </div>
           </div>
