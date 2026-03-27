@@ -6,7 +6,6 @@
 <title>De Saloncoureurs — Leden</title>
 <link rel="stylesheet" href="stijl.css">
 <style>
-  /* Styling voor de lidmaatschapskaarten */
   .leden-grid {
     display: flex;
     flex-wrap: wrap;
@@ -14,7 +13,6 @@
     gap: 20px;
     padding: 20px;
   }
-
   .lid-card {
     position: relative;
     width: 180px;
@@ -33,78 +31,57 @@
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     cursor: pointer;
-    
-    /* De overgang voor het hover-effect */
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-                box-shadow 0.3s ease, 
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                box-shadow 0.3s ease,
                 border-color 0.3s ease;
   }
-
-  /* Het Hover-effect: Omhoog komen en schalen */
   .lid-card:hover {
     transform: translateY(-10px) scale(1.05);
     box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-    border-color: #f1c40f; /* Iets feller goud */
+    border-color: #f1c40f;
   }
-
-  /* Donker verloop onderaan voor betere leesbaarheid tekst */
   .lid-card::after {
     content: "";
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 0; left: 0; right: 0;
     height: 60%;
     background: linear-gradient(transparent, rgba(0,0,0,0.85));
     z-index: 1;
   }
-
-  /* Zorg dat tekst boven het verloop staat */
   .lid-naam, .lid-bijnaam, .lid-functie {
     position: relative;
     z-index: 2;
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
   }
-
-  .lid-naam {
-    font-weight: bold;
-    font-size: 1.1rem;
-    margin-bottom: 2px;
-  }
-
-  .lid-bijnaam {
-    font-style: italic;
-    font-size: 0.9rem;
-    opacity: 0.9;
-    margin-bottom: 5px;
-  }
-
+  .lid-naam { font-weight: bold; font-size: 1.1rem; margin-bottom: 2px; }
+  .lid-bijnaam { font-style: italic; font-size: 0.9rem; opacity: 0.9; margin-bottom: 5px; }
   .lid-functie {
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    background: rgba(212, 169, 42, 0.2);
+    background: rgba(212,169,42,0.2);
     padding: 2px 8px;
     border-radius: 4px;
   }
-  
   .lid-functie.grijs { color: #ccc; }
   .lid-functie.groen { color: #2ecc71; }
-
 </style>
 </head>
 <body>
 
 <nav class="topnav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">🚴 De Saloncoureurs</a>
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" style="width:28px;height:28px;object-fit:contain;">
+      De Saloncoureurs
+    </a>
     <div class="nav-links">
       <a href="index.html">Homepage</a>
-      <a href="kalender.html">Kalender</a> 
+      <a href="kalender.html">Kalender</a>
       <a href="leden.html" class="active">Leden</a>
       <a href="statuten.html">Statuten</a>
       <a href="galerij.html">Galerij</a>
-       <a href="https://www.instagram.com/wtcsaloncoureurs/" target="_blank">Sociale Media ↗</a>
+      <a href="https://www.instagram.com/wtcsaloncoureurs/" target="_blank">Sociale Media ↗</a>
       <a href="https://wtc-saloncoureurs.web.app/" target="_blank">Tracker ↗</a>
     </div>
     <button class="nav-burger" onclick="toggleMenu()">☰</button>
@@ -122,10 +99,15 @@
 
 <div class="page">
 
-  <div class="page-title">
-    <h2>Leden</h2>
-    <p>Het peloton</p>
-  </div>
+  <header class="site-header">
+    <div class="logo" style="background:var(--navy3);padding:4px;">
+      <img src="logo.png" style="width:44px;height:44px;object-fit:contain;">
+    </div>
+    <div class="header-title">
+      <h1>De Saloncoureurs</h1>
+      <p>Het Peloton</p>
+    </div>
+  </header>
 
   <div class="grid">
     <div class="card full">
