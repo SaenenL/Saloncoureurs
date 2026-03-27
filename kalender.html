@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -11,16 +10,16 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             background: var(--surface2);
-            padding: 10px 14px;
+            padding: 10px;
             border-radius: var(--radius-sm);
         }
         .nav-btn {
             background: var(--gold-pale);
             color: var(--gold);
             border: 0.5px solid var(--border2);
-            padding: 8px 14px;
+            padding: 8px 16px;
             border-radius: var(--radius-sm);
             cursor: pointer;
             font-weight: 600;
@@ -29,32 +28,29 @@
             transition: opacity 0.2s;
         }
         .nav-btn:hover { opacity: 0.8; }
-
         .month-display {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 600;
             color: var(--gold);
             text-transform: capitalize;
             margin: 0;
         }
-
-        /* Kalender grid */
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 4px;
+            gap: 5px;
         }
         .calendar-day-head {
             font-weight: 700;
             text-align: center;
-            padding: 5px 2px;
-            font-size: 0.7rem;
+            padding: 5px;
+            font-size: 0.75rem;
             color: var(--text3);
             text-transform: uppercase;
             letter-spacing: .04em;
         }
         .calendar-day {
-            min-height: 80px;
+            min-height: 90px;
             border: 0.5px solid var(--border);
             border-radius: var(--radius-sm);
             padding: 4px;
@@ -72,17 +68,11 @@
             position: absolute; top: 3px; right: 5px;
             font-size: 7px; color: var(--gold);
         }
-        .day-number {
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 3px;
-            color: var(--text);
-        }
+        .day-number { font-size: 12px; font-weight: 700; margin-bottom: 4px; color: var(--text); }
         .calendar-day.today .day-number { color: var(--gold); }
-
         .event-label {
             font-size: 9px;
-            line-height: 1.2;
+            line-height: 1.1;
             padding: 2px 4px;
             border-radius: 3px;
             margin-top: 2px;
@@ -92,26 +82,10 @@
         .event-special { background: var(--amber-bg);  color: var(--amber-fg);  border-left: 2px solid var(--amber-fg); }
         .event-weekend { background: var(--purple-bg); color: var(--purple-fg); border-left: 2px solid var(--purple-fg); }
 
-        /* Legenda */
-        .legend {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 14px;
-        }
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
-            color: var(--text2);
-        }
-        .legend-dot {
-            width: 10px; height: 10px;
-            border-radius: 2px;
-        }
+        .legend { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+        .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); }
+        .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
 
-        /* ── Mobiel: kleinere cellen ── */
         @media (max-width: 540px) {
             .calendar-day { min-height: 54px; padding: 3px; }
             .day-number { font-size: 11px; }
@@ -119,24 +93,6 @@
             .calendar-day-head { font-size: 0.65rem; padding: 4px 1px; }
             .month-display { font-size: 1rem; }
             .nav-btn { padding: 6px 10px; font-size: 13px; }
-            .legend { gap: 8px; }
-            .legend-item { font-size: 11px; }
-        }
-
-        @media (max-width: 360px) {
-            .calendar-grid { gap: 2px; }
-            .calendar-day { min-height: 44px; }
-            .event-label { display: none; }
-            .calendar-day.has-event::before {
-                content: '•';
-                font-size: 14px;
-                font-weight: 900;
-                display: block;
-                margin-top: 2px;
-            }
-            .calendar-day.has-sunday::before  { color: var(--teal-fg); }
-            .calendar-day.has-special::before { color: var(--amber-fg); }
-            .calendar-day.has-weekend::before { color: var(--purple-fg); }
         }
     </style>
 </head>
@@ -159,7 +115,6 @@
     </div>
     <button class="nav-burger" onclick="toggleMenu()">☰</button>
   </div>
-  <!-- Mobiel menu — was volledig afwezig in de originele code -->
   <div class="nav-mobile" id="mobileMenu">
     <a href="index.html">Homepage</a>
     <a href="kalender.html" class="active">Kalender</a>
@@ -173,24 +128,25 @@
 
 <div class="page">
 
-  <div class="page-title">
-    <h2>Kalender</h2>
-    <p>Alle ritten en events van het seizoen</p>
-  </div>
+  <header class="site-header">
+    <div class="logo" style="background:var(--navy3);padding:4px;">
+      <img src="logo.png" style="width:44px;height:44px;object-fit:contain;">
+    </div>
+    <div class="header-title">
+      <h1>De Saloncoureurs</h1>
+      <p>Interactieve Kalender</p>
+    </div>
+  </header>
 
   <div class="grid">
     <div class="card full">
       <div class="card-title"><div class="dot dot-blue"></div> Agenda 2026</div>
-
       <div class="calendar-nav">
         <button class="nav-btn" onclick="changeMonth(-1)">« Vorige</button>
         <h2 id="month-label" class="month-display">Maand Jaar</h2>
         <button class="nav-btn" onclick="changeMonth(1)">Volgende »</button>
       </div>
-
       <div class="calendar-grid" id="calendar-grid"></div>
-
-      <!-- Legenda -->
       <div class="legend">
         <div class="legend-item">
           <div class="legend-dot" style="background:var(--teal-bg);border-left:2px solid var(--teal-fg)"></div>
@@ -222,8 +178,8 @@ const specialEvents = [
     { date: '2026-03-27', title: 'Fietsweekend Leisele', type: 'weekend' },
     { date: '2026-03-28', title: 'Fietsweekend Leisele', type: 'weekend' },
     { date: '2026-03-29', title: 'Fietsweekend Leisele', type: 'weekend' },
-    { date: '2026-05-31', title: 'Rikolto rit', type: 'special' },
-    { date: '2026-06-14', title: 'Vaderdagrit', type: 'special' },
+    { date: '2026-05-31', title: 'Rikolto rit - goede doel', type: 'special' },
+    { date: '2026-06-14', title: 'Vaderdagrit / Bardosrit', type: 'special' },
     { date: '2026-06-21', title: 'Triathlon Kortrijk', type: 'special' },
 ];
 
@@ -254,9 +210,7 @@ function renderCalendar() {
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const startOffset = firstDay === 0 ? 6 : firstDay - 1;
 
-    for (let i = 0; i < startOffset; i++) {
-        grid.appendChild(document.createElement('div'));
-    }
+    for (let i = 0; i < startOffset; i++) grid.appendChild(document.createElement('div'));
 
     const today = new Date();
 
@@ -276,10 +230,8 @@ function renderCalendar() {
         const spec = specialEvents.find(e => e.date === dateStr);
         if (spec) {
             dayDiv.innerHTML += `<div class="event-label event-${spec.type}">${spec.title}</div>`;
-            dayDiv.classList.add('has-event', `has-${spec.type}`);
         } else if (dateObj.getDay() === 0 && year === 2026 && month >= 2 && month <= 10) {
             dayDiv.innerHTML += `<div class="event-label event-sunday">Zondagsrit</div>`;
-            dayDiv.classList.add('has-event', 'has-sunday');
         }
 
         grid.appendChild(dayDiv);
